@@ -104,9 +104,8 @@ QEMUOPTS = -M versatilepb -m 128M -nographic -smp $(CPUS)
 qemu: all
 	$(QEMU) $(QEMUOPTS) -kernel $(PROG).bin
 
-.gdbinit: .gdbinit.tmpl-arm32
-	sed "s/:1234/:$(GDBPORT)/" < $^ > $@
-	sed "s/:kernel.bin/:$(PROG).bin/" < $^ > $@
+.gdbinit: .gdbinit.tmpl
+	sed -e "s/:1234/:$(GDBPORT)/" -e "s/xxx.elf/$(PROG).elf/" < $^ > $@
 
 qemu-gdb: all .gdbinit
 	@echo "*** Now run 'gdb' in another window." 1>&2
