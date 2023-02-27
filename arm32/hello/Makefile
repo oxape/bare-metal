@@ -14,7 +14,7 @@ GDB = $(CROSS_COMPILE)gdb
 OBJCOPY = $(CROSS_COMPILE)objcopy
 OBJDUMP = $(CROSS_COMPILE)objdump 
 
-.PHONY: clean all dump run debug
+.PHONY: clean all dump debug qemu qemu-gdb
 
 
 # -O0          : Disable optimizations
