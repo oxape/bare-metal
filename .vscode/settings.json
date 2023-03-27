@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "config.h": "c",
+        "spinlock.h": "c",
+        "stdarg.h": "c",
+        "riscv.h": "c",
+        "defs.h": "c",
+        "types.h": "c"
+    }
+}

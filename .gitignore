@@ -1,4 +1,6 @@
+
 # Tmp files
+**/.gdbinit
 *.elf
 *.asm
 *.sym
