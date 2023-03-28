@@ -1,5 +1,10 @@
+UNAME_S := $(shell uname -s)
 ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE=riscv64-linux-gnu-
+ifeq ($(UNAME_S),Linux) # docker riscv-dev:0.0
+	CROSS_COMPILE=riscv64-linux-gnu-
+else # macos
+	CROSS_COMPILE=riscv64-unknown-elf-
+endif
 endif
 
 # Base address to load the program
@@ -25,19 +30,11 @@ BUILD = build
 # -ffixed-r8   		: Don't touch register r8
 # -fno-builtin 		: https://stackoverflow.com/questions/54281780/what-exactly-is-fno-builtin-doing-here
 # -ffreestanding 	: https://stackoverflow.com/questions/17692428/what-is-ffreestanding-option-in-gcc
+# -mcmodel=medany   : https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
 CFLAGS += -g -O0
+CFLAGS += -MD -mcmodel=medany -mno-relax
 CFLAGS += -fno-builtin -ffreestanding -nostdlib
-# CFLAGS = -nostdinc \
-# 		-fno-common \
-# 		-fno-builtin \
-# 		-ffixed-r8 \
-# 		-msoft-float \
-# 		-ffreestanding \
-# 		-I./ \
-# 		-DTEXT_BASE=$(RAM_BASE) \
-# 		-O0 \
-# 		-g -Wall \
-# 		-marm -mcpu=arm1176jzf-s
+# LDFLAGS += --no-warn-rwx-segment
 
 # Name of target program
 PROG=main
@@ -75,7 +72,7 @@ $(BUILD)/%.o: %.c
 
 $(BUILD)/$(PROG).elf: $(OBJ)
 	echo $(OBJ)
-	$(LD) -T $(LINKER_SCRIPTS) $^ -o $@
+	$(LD) -T $(LINKER_SCRIPTS) $(LDFLAGS) $^ -o $@
 
 $(BUILD)/$(PROG).bin: $(BUILD)/$(PROG).elf
 	$(OBJCOPY) -v -O binary $^ $@
