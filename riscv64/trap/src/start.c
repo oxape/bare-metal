@@ -8,13 +8,13 @@ extern void main();
 void start() {
     // disable paging for now.
     w_satp(0);
-
-    cpus_reset();
-
     // keep each CPU's hartid in its tp register, for cpuid().
     int id = r_mhartid();
     w_tp(id);
 
+    cpus_reset();
+
+    printfinit();
     uartinit();
     main();
 }
