@@ -6,12 +6,6 @@
             "request": "attach",
             "program": "${workspaceFolder}/build/main.elf",
             "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "text": "file ${workspaceFolder}/build/main.elf",
-                    "ignoreFailures": true
-                }
-            ],
             "useExtendedRemote": true,
             "logging": {
                 "trace": true,
