@@ -1,12 +1,32 @@
 {
     "configurations": [
         {
+            "name": "(lldb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/build/main.elf",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "file ${workspaceFolder}/build/main.elf",
+                    "ignoreFailures": true
+                }
+            ],
+            "useExtendedRemote": true,
+            "logging": {
+                "trace": true,
+                "traceResponse": true
+            },
+            "miDebuggerPath": "/usr/local/opt/riscv-gnu-toolchain/bin/riscv64-unknown-elf-gdb",
+            "miDebuggerServerAddress": "127.0.0.1:25501"
+        },
+        {
             "type": "gdb",
             "request": "attach",
             "name": "Attach to gdbserver",
             "executable": "${workspaceFolder}/build/main.elf",
-            // "target": "127.0.0.1:25501",
-            "target": "127.0.0.1:26000",
+            // "target": "127.0.0.1:26000",
+            "target": "127.0.0.1:25501",
             "remote": true,
             "cwd": "${workspaceFolder}",
             // "gdbpath": "/usr/bin/gdb-multiarch",
