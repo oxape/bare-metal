@@ -5,10 +5,12 @@
             "request": "attach",
             "name": "Attach to gdbserver",
             "executable": "${workspaceFolder}/build/main.elf",
+            // "target": "127.0.0.1:25501",
             "target": "127.0.0.1:26000",
             "remote": true,
             "cwd": "${workspaceFolder}",
-            "gdbpath": "/usr/bin/gdb-multiarch",
+            // "gdbpath": "/usr/bin/gdb-multiarch",
+            "gdbpath": "/usr/local/opt/riscv-gnu-toolchain/bin/riscv64-unknown-elf-gdb",
             "debugger_args": [
 
             ],
