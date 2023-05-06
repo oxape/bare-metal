@@ -21,7 +21,7 @@ OBJDUMP = $(CROSS_COMPILE)objdump
 # -g           : Generate debug info
 # -ffixed-r8   : Don't touch register r8
 CFLAGS += -g -O0
-CFLAGS += -mcpu=cortex-a9
+CFLAGS += -mcpu=arm926ej-s
 # CFLAGS = -nostdinc \
 # 		-fno-common \
 # 		-fno-builtin \
