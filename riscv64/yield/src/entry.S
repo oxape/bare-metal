@@ -7,7 +7,7 @@ _entry:
     # with a 1024-byte stack per CPU.
     # sp = stack_bottom + (hartid * 1024)
     la sp, stack_bottom
-    li a0, 1024*16
+    li a0, 4096
     csrr a1, mhartid
     addi a1, a1, 1
     mul a0, a0, a1

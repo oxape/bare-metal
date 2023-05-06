@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to gdbserver",
+            "executable": "${workspaceFolder}/build/main.elf",
+            // "target": "127.0.0.1:26000",
+            "target": "127.0.0.1:25501",
+            "remote": true,
+            "cwd": "${workspaceFolder}",
+            "stopAtConnect": true,
+            // "gdbpath": "/usr/bin/gdb-multiarch",
+            "gdbpath": "/usr/local/opt/riscv-gnu-toolchain/bin/riscv64-unknown-elf-gdb",
+            "debugger_args": [
+
+            ],
+            "valuesFormatting": "parseText",
+            // "preLaunchTask": "build"
+        },
+
+    ]
+}
