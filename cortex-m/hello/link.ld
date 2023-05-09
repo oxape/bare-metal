@@ -3,7 +3,7 @@ SECTIONS
 {
     . = 0x40000000;
     .startup . : { 
-        *start.o(.text) 
+        start.o(.text) 
     }
     .text : {
          *(.text)

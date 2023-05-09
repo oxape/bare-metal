@@ -31,7 +31,7 @@ CFLAGS += -g -O0
 CFLAGS += -MD
 CFLAGS += -march=armv8-a -mcpu=cortex-a57
 CFLAGS += -fno-builtin -ffreestanding
-# LDFLAGS += -nostdlib
+LDFLAGS += -nostdlib
 # LDFLAGS += -L/Users/starot/bin/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/ -lgcc 
 
 # Name of target program

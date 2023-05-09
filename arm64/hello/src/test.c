@@ -1,8 +1,8 @@
-volatile unsigned int * const UART0DR = (unsigned int *)0x09000000;
+volatile unsigned char * const UART0DR = (unsigned char *)0x09000000;
  
 void print_uart0(const char *s) {
     while(*s != '\0') { /* Loop until end of string */
-        *UART0DR = (unsigned int)(*s); /* Transmit char */
+        *UART0DR = (unsigned char)(*s); /* Transmit char */
         s++; /* Next char */
     }
 }

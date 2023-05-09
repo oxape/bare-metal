@@ -1,10 +1,10 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE=arm-none-eabi-
+CROSS_COMPILE=aarch64-elf-
 endif
 
 # Base address to load the program
-RAM_BASE=0x10000
+RAM_BASE=0x40000000
 LINKER_SCRIPTS="link.ld"
 
 AS = $(CROSS_COMPILE)as
@@ -29,8 +29,9 @@ BUILD = build
 # -mcmodel=medany   : https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
 CFLAGS += -g -O0
 CFLAGS += -MD
-CFLAGS += -mcpu=cortex-a76
-# CFLAGS += -fno-builtin -ffreestanding -nostdlib
+CFLAGS += -march=armv8-a -mcpu=cortex-a57
+CFLAGS += -fno-builtin -ffreestanding
+LDFLAGS += -nostdlib
 # LDFLAGS += -L/Users/starot/bin/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/ -lgcc 
 
 # Name of target program
