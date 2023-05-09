@@ -1,14 +1,10 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(CROSS_COMPILE),)
-ifeq ($(UNAME_S),Linux) # docker riscv-dev:0.0
-	CROSS_COMPILE=riscv64-linux-gnu-
-else # macos
-	CROSS_COMPILE=riscv64-unknown-elf-
-endif
+CROSS_COMPILE=aarch64-elf-
 endif
 
 # Base address to load the program
-RAM_BASE=0x80000000
+RAM_BASE=0x40000000
 LINKER_SCRIPTS="link.ld"
 
 AS = $(CROSS_COMPILE)as
@@ -32,25 +28,22 @@ BUILD = build
 # -ffreestanding 	: https://stackoverflow.com/questions/17692428/what-is-ffreestanding-option-in-gcc
 # -mcmodel=medany   : https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
 CFLAGS += -g -O0
-CFLAGS += -MD -mcmodel=medany -mno-relax
-CFLAGS += -fno-builtin -ffreestanding -nostdlib
-# LDFLAGS += --no-warn-rwx-segment
+CFLAGS += -MD
+CFLAGS += -march=armv8-a -mcpu=cortex-a57
+CFLAGS += -fno-builtin -ffreestanding
+# LDFLAGS += -nostdlib
+# LDFLAGS += -L/Users/starot/bin/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/ -lgcc 
 
 # Name of target program
 PROG=main
 
 # List of all *c sources
 CSRC = \
- src/cpu.c \
- src/main.c \
- src/printf.c \
- src/spinlock.c \
- src/uart.c \
- src/start.c
+ src/kernel.c
 
 #List of all *S (asm) sources
 ASRC= \
- src/entry.S
+ src/boot.S
 
 TMP_OBJ += $(CSRC:.c=.o)
 TMP_OBJ += $(ASRC:.S=.o)
@@ -108,7 +101,7 @@ debug: $(BUILD)/$(PROG).bin
 
 # run in qemu
 
-QEMU = qemu-system-riscv64
+QEMU = qemu-system-aarch64
 
 # try to generate a unique GDB port
 GDBPORT = $(shell expr `id -u` % 5000 + 25000)
@@ -120,7 +113,7 @@ ifndef CPUS
 CPUS := 1
 endif
 
-QEMUOPTS = -machine virt -bios none -m 128M -nographic -smp $(CPUS)
+QEMUOPTS = -M virt -cpu cortex-a57 -m 2G -nographic -smp $(CPUS)
 
 
 qemu: all

@@ -72,7 +72,7 @@ $(BUILD)/%.o: %.c
 
 $(BUILD)/$(PROG).elf: $(OBJ)
 	echo $(OBJ)
-	$(LD) -T $(LINKER_SCRIPTS) $(LDFLAGS) $^ -o $@
+	$(LD) -T $(LINKER_SCRIPTS) $^ $(LDFLAGS) -o $@
 
 $(BUILD)/$(PROG).bin: $(BUILD)/$(PROG).elf
 	$(OBJCOPY) -v -O binary $^ $@

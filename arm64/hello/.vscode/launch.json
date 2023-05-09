@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to gdbserver",
+            "executable": "${workspaceFolder}/build/main.elf",
+            // "target": "127.0.0.1:26000",
+            "target": "127.0.0.1:25501",
+            "remote": true,
+            "cwd": "${workspaceFolder}",
+            "stopAtConnect": true,
+            // "gdbpath": "/usr/bin/gdb-multiarch",
+            // "gdbpath": "${input:os}",
+            "gdbpath": "/Users/starot/bin/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gdb",
+            "debugger_args": [],
+            "valuesFormatting": "parseText",
+            // "preLaunchTask": "build"
+        },
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "os",
+            "description": "What os",
+            "options": [
+                "macos",
+                "linux",
+            ],
+            "default": "macos"
+        }
+    ]
+}

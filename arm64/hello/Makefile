@@ -31,7 +31,7 @@ CFLAGS += -g -O0
 CFLAGS += -MD
 CFLAGS += -mcpu=cortex-a76
 # CFLAGS += -fno-builtin -ffreestanding -nostdlib
-# LDFLAGS += -lgcc
+# LDFLAGS += -L/Users/starot/bin/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/ -lgcc 
 
 # Name of target program
 PROG=main
@@ -64,7 +64,7 @@ $(BUILD)/%.o: %.c
 
 $(BUILD)/$(PROG).elf: $(OBJ)
 	echo $(OBJ)
-	$(LD) -T $(LINKER_SCRIPTS) $(LDFLAGS) $^ -o $@
+	$(LD) -T $(LINKER_SCRIPTS) $^ $(LDFLAGS) -o $@
 
 $(BUILD)/$(PROG).bin: $(BUILD)/$(PROG).elf
 	$(OBJCOPY) -v -O binary $^ $@
