@@ -1,9 +1,9 @@
 ENTRY(_Reset)
 SECTIONS
 {
-    . = 0x40000000;
+    . = 0x00000000;
     .startup . : { 
-        start.o(.text) 
+        *start.o(.text) 
     }
     .text : {
          *(.text)
