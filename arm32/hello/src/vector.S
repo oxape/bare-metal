@@ -10,12 +10,12 @@
     .section ".vector"
 vector:
     B       Reset_Handler
-    B       Undefined_Handller
-    B       SWI_Handller
+    B       Undefined_Handler
+    B       SWI_Handler
     B       Prefetch_Handler
     B       Data_Handler
     NOP @ Reserved vector
-    B IRQ_Hander
+    B IRQ_Handler
     B FIRQ_Handler
 
 Default_handler:
