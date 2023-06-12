@@ -1,29 +1,32 @@
 SECTIONS {
         . = 0x40000000;
         .text : {
-              * (.vector);
-              * (.startup);
-              * (.text);
+              KEEP(*(.vector));
+              *(.startup)
+              *(.text*)
+              *(.rodata*)
         }
-        .rodata : {
-              * (.rodata);
-        }
-        flash_sdata = .;
+        __etext = ALIGN (4);
+        . = ALIGN (CONSTANT (COMMONPAGESIZE));
 
-        . = 0xA0000000;
-        ram_sdata = .;
-        .data : AT (flash_sdata) {
-              * (.data);
-        }
-        ram_edata = .;
-        data_size = ram_edata - ram_sdata;
+        .data : AT (__etext) {
+            __data_start__ = .;
+            *(.data*)
 
-        sbss = .;
-        .bss : {
-             * (.bss);
+            . = ALIGN(4);
+            /* All data end */
+            __data_end__ = .;
         }
-        ebss = .;
-        bss_size = ebss - sbss;
+
+        .bss :
+        {
+            . = ALIGN(4);
+            __bss_start__ = .;
+            *(.bss*)
+            *(COMMON)
+            . = ALIGN(4);
+            __bss_end__ = .;
+        }
         . = ALIGN (CONSTANT (COMMONPAGESIZE));
         stack_bottom = .;
 }

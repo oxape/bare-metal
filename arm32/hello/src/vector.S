@@ -13,39 +13,39 @@
 
     .section ".vector"
 vector:
-    B       Reset_Handler
-    B       Undefined_Handler
-    B       SWI_Handler
-    B       Prefetch_Handler
-    B       Data_Handler
+    b       Reset_Handler
+    b       Undefined_Handler
+    b       SWI_Handler
+    b       Prefetch_Handler
+    b       Data_Handler
     NOP @ Reserved vector
-    B IRQ_Handler
-    B FIRQ_Handler
+    b IRQ_Handler
+    b FIRQ_Handler
 
 .weak Reset_Handler
 Reset_Handler:
-    B       .
+    b       .
 
 .weak Undefined_Handler
 Undefined_Handler:
-    B       .
+    b       .
 
 .weak SWI_Handler
 SWI_Handler:
-    B       .
+    b       .
 
 .weak Prefetch_Handler
 Prefetch_Handler:
-    B       .
+    b       .
 
 .weak Data_Handler
 Data_Handler:
-    B       .
+    b       .
 
 .weak IRQ_Handler
 IRQ_Handler:
-    B       .
+    b       .
 
 .weak FIRQ_Handler
 FIRQ_Handler:
-    B       .
+    b       .
