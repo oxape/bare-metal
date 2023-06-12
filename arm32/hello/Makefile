@@ -39,11 +39,14 @@ PROG=main
 
 # List of all *c sources
 CSRC = \
- src/test.c
+ src/main_wrapper.c\
+ src/main.c\
+ src/uart.c
 
 #List of all *S (asm) sources
 ASRC= \
- src/start.S
+ src/vector.S\
+ src/startup.S
 
 TMP_OBJ += $(CSRC:.c=.o)
 TMP_OBJ += $(ASRC:.S=.o)
