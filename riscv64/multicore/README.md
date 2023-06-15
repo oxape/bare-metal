@@ -1,5 +1,9 @@
+## multicore
+
+多核心单线程，运行时至少CPUS=2才能看出来效果，有两个核心在运行main函数，交替打印Hello world。
+
 ## 运行
-make qemu CPUS=1
+make qemu CPUS=2
 
 ## 调试
 运行qemu等待gdb attach

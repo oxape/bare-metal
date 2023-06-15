@@ -10,7 +10,7 @@ extern void yield(void);
 
 thread_t g_thread[THREAD_MAX];
 
-uint8 stack[THREAD_MAX][4096];  // 暂时都用同一个栈
+uint8 stack[THREAD_MAX][4096];
 
 thread_t *thread_current(void) {
     push_off();
