@@ -1,35 +1,37 @@
-#include "defs.h"
-#include "riscv.h"
+## Fix boot on newer qemu
 
-extern void main();
+https://github.com/mit-pdos/xv6-riscv/pull/62
 
-static void pmpinit();
+riscv.h
+```
+// physical memory protection CSRs
+#define PMP_R (1L << 0)
+#define PMP_W (1L << 1)
+#define PMP_X (1L << 2)
+// naturally aligned power of two
+#define PMP_MATCH_NAPOT (3L << 3)
 
-// entry.S jumps here in machine mode on stack0.
-void start() {
-    // set M Previous Privilege mode to Supervisor, for mret.
-    unsigned long x = r_mstatus();
-    x &= ~MSTATUS_MPP_MASK;
-    x |= MSTATUS_MPP_S;
-    w_mstatus(x);
+// we only implement accessing one PMP register
 
-    // set M Exception Program Counter to main, for mret.
-    // requires gcc -mcmodel=medany
-    w_mepc((uint64)main);
+// write to the first 8 PMP configuration registers
+static inline void
+w_pmpcfg0(uint64 x)
+{
+  asm volatile("csrw pmpcfg0, %0" : : "r" (x));
+}
 
-    // disable paging for now.
-    w_satp(0);
+// write to the address for PMP region 0
+static inline void
+w_pmpaddr0(uint64 x)
+{
+  asm volatile("csrw pmpaddr0, %0" : : "r" (x));
+}
 
-    // delegate all interrupts and exceptions to supervisor mode.
-    w_medeleg(0xffff);
-    w_mideleg(0xffff);
-    w_sie(r_sie() | SIE_SEIE | SIE_STIE | SIE_SSIE);
+```
 
-    // keep each CPU's hartid in its tp register, for cpuid().
-    int id = r_mhartid();
-    w_tp(id);
-
-    // allow access to all physical memory by S mode
+start.c
+```
+// allow access to all physical memory by S mode
     pmpinit();
 
     // switch to supervisor mode and jump to main().
@@ -56,3 +58,5 @@ static void pmpinit() {
   // then we allow the access
   w_pmpcfg0(PMP_R | PMP_W | PMP_X | PMP_MATCH_NAPOT);
 }
+
+```

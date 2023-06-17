@@ -8,6 +8,7 @@ struct spinlock;
 //cpu.c
 int             cpus_reset();
 struct cpu      *mycpu(void);
+uint64          cpuid(void);
 
 // spinlock.c
 void            acquire(struct spinlock*);
