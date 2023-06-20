@@ -18,9 +18,23 @@ void            release(struct spinlock*);
 void            push_off(void);
 void            pop_off(void);
 
+// kalloc.c
+void            *kalloc(void);
+void            kfree(void *);
+void            kinit(void);
+
 // printf.c
 void            printf(char*, ...);
 void            panic(char*) __attribute__((noreturn));
 void            printfinit(void);
+
+// string.c
+int             memcmp(const void*, const void*, uint);
+void*           memmove(void*, const void*, uint);
+void*           memset(void*, int, uint);
+char*           safestrcpy(char*, const char*, int);
+int             strlen(const char*);
+int             strncmp(const char*, const char*, uint);
+char*           strncpy(char*, const char*, int);
 
 #endif /* BDA4701A_A23B_46E8_8032_1D6F2A90601A */

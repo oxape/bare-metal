@@ -42,10 +42,12 @@ PROG=main
 # List of all *c sources
 CSRC = \
  src/cpu.c \
+ src/string.c \
  src/main.c \
  src/printf.c \
  src/spinlock.c \
  src/uart.c \
+ src/kalloc.c \
  src/start.c
 
 #List of all *S (asm) sources

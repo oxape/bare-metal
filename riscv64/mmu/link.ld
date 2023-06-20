@@ -1,8 +1,13 @@
 SECTIONS
 {
     . = 0x80000000;
-    .startup . : { **/entry.o(.text) }
-    .text : { *(.text) }
+    .startup . : {
+        **/entry.o(.text) 
+    }
+    . = 0x80000000;
+    .text() : {
+        *(.text)
+    }
     /* 
     下面的ALIGN命令可以去除链接时的警告.
     warning: build/main.elf has a LOAD segment with RWX permissions 
@@ -13,5 +18,6 @@ SECTIONS
     .bss : { *(.bss COMMON) }
     . = ALIGN(8);
     stack_bottom = .;
-    . = . + 0x4000; /* 4kB*4 of stack memory */
+    . = . + 0x10000; /* 4kB*4 of stack memory */
+    PROVIDE(end = .);
 }
