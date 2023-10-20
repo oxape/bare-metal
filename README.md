@@ -152,8 +152,10 @@ gdb-multiarch -ex "set architecture riscv:rv64" -ex "file build/main.elf"，同�
 ![Alt text](.images/eclipse-6.png)
 9. Common选项卡，Save as选择Shared file
 ![Alt text](.images/eclipse-7.png)
-## 问题记录
 10. 点击Apply，然后点击Debug（可以在Debug前先设置一个断点）。
+
+## 问题记录
+
 ### immediate value out of range
 gcc使用选项"-march=armv7-m -mcpu=cortex-m3"编译如下代码
 ```
