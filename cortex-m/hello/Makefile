@@ -101,7 +101,7 @@ debug: $(BUILD)/$(PROG).bin
 
 # run in qemu
 
-QEMU = qemu-system-aarch64
+QEMU = qemu-system-arm
 
 # try to generate a unique GDB port
 GDBPORT = $(shell expr `id -u` % 5000 + 25000)

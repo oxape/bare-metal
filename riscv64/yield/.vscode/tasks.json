@@ -5,8 +5,9 @@
             "label": "makebuild",
             "command": "make",
             "args": [
-                "qemu-dbg",
-                "CPUS=1"
+                "qemu-gdb",
+                "CPUS=1",
+                "&"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

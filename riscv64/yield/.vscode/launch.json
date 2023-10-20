@@ -11,8 +11,8 @@
                 "trace": true,
                 "traceResponse": true
             },
-            "miDebuggerPath": "/usr/local/opt/riscv-gnu-toolchain/bin/riscv64-unknown-elf-gdb",
-            "miDebuggerServerAddress": "127.0.0.1:25501"
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "miDebuggerServerAddress": "127.0.0.1:26000"
         },
         {
             "name": "(native-debug) Attach to gdbserver",

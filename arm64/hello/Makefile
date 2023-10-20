@@ -1,6 +1,15 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE=aarch64-elf-
+
+CROSS_COMPILE := $(shell if aarch64-elf-objdump -i 2>&1 | grep 'elf64-big' >/dev/null 2>&1; \
+	then echo 'aarch64-elf-'; \
+	elif aarch64-linux-gnu-objdump -i 2>&1 | grep 'elf64-big' >/dev/null 2>&1; \
+	then echo 'aarch64-linux-gnu-'; \
+	else echo "***" 1>&2; \
+	echo "*** Error: Couldn't find a riscv64 version of GCC/binutils." 1>&2; \
+	echo "*** To turn off this error, run 'gmake TOOLPREFIX= ...'." 1>&2; \
+	echo "***" 1>&2; exit 1; fi)
+
 endif
 
 # Base address to load the program
@@ -74,6 +83,7 @@ $(BUILD)/$(PROG).bin: $(BUILD)/$(PROG).elf
 
 clean:
 	rm -rf build/*
+	rm -f *.asm
 	rm -f *.sym
 	rm -f *.a
 	rm -f *.o 
@@ -113,7 +123,7 @@ ifndef CPUS
 CPUS := 1
 endif
 
-QEMUOPTS = -M virt -cpu cortex-a76 -m 2G -nographic -smp $(CPUS)
+QEMUOPTS = -M virt -cpu cortex-a57 -m 2G -nographic -smp $(CPUS)
 
 
 qemu: all

@@ -1,6 +1,15 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE=aarch64-elf-
+
+CROSS_COMPILE := $(shell if aarch64-elf-objdump -i 2>&1 | grep 'elf64-big' >/dev/null 2>&1; \
+	then echo 'aarch64-elf-'; \
+	elif aarch64-linux-gnu-objdump -i 2>&1 | grep 'elf64-big' >/dev/null 2>&1; \
+	then echo 'aarch64-linux-gnu-'; \
+	else echo "***" 1>&2; \
+	echo "*** Error: Couldn't find a riscv64 version of GCC/binutils." 1>&2; \
+	echo "*** To turn off this error, run 'gmake TOOLPREFIX= ...'." 1>&2; \
+	echo "***" 1>&2; exit 1; fi)
+
 endif
 
 # Base address to load the program
@@ -43,7 +52,7 @@ CSRC = \
 
 #List of all *S (asm) sources
 ASRC= \
- src/boot.S
+ src/start.S
 
 TMP_OBJ += $(CSRC:.c=.o)
 TMP_OBJ += $(ASRC:.S=.o)

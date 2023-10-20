@@ -9,6 +9,7 @@ SECTIONS {
         __etext = ALIGN (4);
         . = ALIGN (CONSTANT (COMMONPAGESIZE));
 
+        . = 0x80000000;
         .data : AT (__etext) {
             __data_start__ = .;
             *(.data*)
