@@ -125,7 +125,7 @@ $ tree
 ```
 make qemu-gdb
 ```
-启动第二个中断运行
+启动第二个终端运行
 ```
 gdb-multiarch -tui -q -iex "set auto-load safe-path ./"
 ```
