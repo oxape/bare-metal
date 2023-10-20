@@ -1,3 +1,29 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [介绍](#%E4%BB%8B%E7%BB%8D)
+- [Todo](#todo)
+- [目录说明](#%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E)
+  - [arm32](#arm32)
+    - [1. 示例hello](#1-%E7%A4%BA%E4%BE%8Bhello)
+    - [2. 示例libgcc](#2-%E7%A4%BA%E4%BE%8Blibgcc)
+    - [3. 示例mmu](#3-%E7%A4%BA%E4%BE%8Bmmu)
+  - [arm64](#arm64)
+    - [1. 示例hello](#1-%E7%A4%BA%E4%BE%8Bhello-1)
+  - [cortex-m](#cortex-m)
+    - [1. 示例hello](#1-%E7%A4%BA%E4%BE%8Bhello-2)
+- [运行示例](#%E8%BF%90%E8%A1%8C%E7%A4%BA%E4%BE%8B)
+- [调试](#%E8%B0%83%E8%AF%95)
+  - [直接使用gdb调试](#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8gdb%E8%B0%83%E8%AF%95)
+  - [使用vscode调试](#%E4%BD%BF%E7%94%A8vscode%E8%B0%83%E8%AF%95)
+  - [使用eclipse调试](#%E4%BD%BF%E7%94%A8eclipse%E8%B0%83%E8%AF%95)
+- [问题记录](#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95)
+  - [immediate value out of range](#immediate-value-out-of-range)
+- [wiki中关于cortex-m](#wiki%E4%B8%AD%E5%85%B3%E4%BA%8Ecortex-m)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [toc]
 
 ## 介绍
