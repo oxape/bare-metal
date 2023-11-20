@@ -44,15 +44,3 @@ uint64_t satp = ((uint64_t)mode << 60) | ((uint64_t)asid << 44) | (pt_base >> 12
 entry.S
 start.c
 main.c
-
-## 运行
-make qemu CPUS=1
-
-## 调试
-运行qemu等待gdb attach
-
-    make qemu-gdb CPUS=1
-
-其他窗口运行gdb
-
-    gdb-multiarch -tui -q -iex "set auto-load safe-path ./"
