@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "name": "(cppdbg) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/build/main.elf",
+            "MIMode": "gdb",
+            "useExtendedRemote": true,
+            "logging": {
+                "trace": true,
+                "traceResponse": true
+            },
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "miDebuggerServerAddress": "127.0.0.1:26000"
+        },
+        {
+            "name": "(native-debug) Attach to gdbserver",
+            "type": "gdb",
+            "request": "attach",
+            "executable": "${workspaceFolder}/build/main.elf",
+            "target": "127.0.0.1:26000",
+            // "target": "127.0.0.1:25501",
+            "remote": true,
+            "cwd": "${workspaceFolder}",
+            "gdbpath": "/usr/bin/gdb-multiarch",
+            // "gdbpath": "/usr/local/opt/riscv-gnu-toolchain/bin/riscv64-unknown-elf-gdb",
+            "debugger_args": [
+
+            ],
+            "valuesFormatting": "parseText",
+            // "preLaunchTask": "build"
+        },
+
+    ]
+}

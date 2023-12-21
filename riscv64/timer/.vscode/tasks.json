@@ -1,0 +1,23 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "makebuild",
+            "command": "make",
+            "args": [
+                "qemu-gdb",
+                "CPUS=1",
+                "&"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "build",
+            "dependsOn": ["makebuild"],
+            "dependsOrder": "sequence"
+        }
+    ],
+    "version": "2.0.0"
+}
