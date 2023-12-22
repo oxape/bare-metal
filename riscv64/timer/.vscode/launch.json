@@ -11,9 +11,15 @@
                 "trace": true,
                 "traceResponse": true
             },
+            "setupCommands": [
+                {
+                    "text": "source ${workspaceFolder}/.gdbinit"
+                },
+            ],
             "miDebuggerPath": "/usr/bin/gdb-multiarch",
             "miDebuggerServerAddress": "127.0.0.1:26000"
         },
+        
         {
             "name": "(native-debug) Attach to gdbserver",
             "type": "gdb",
