@@ -1,12 +1,11 @@
 ENTRY(_Reset)
 SECTIONS
 {
-    . = 0x40100000;
+    . = 0x40000000;
     .text : {
         *start.o(.text)
         KEEP(*(.vectors));
         *(.text)
-         . = 0x40108ff8;
         *(.adr.text)
     }
     
@@ -29,6 +28,6 @@ SECTIONS
         *(COMMON)
     }
     . = ALIGN (CONSTANT (COMMONPAGESIZE));
-    stack_bottom = .;
-    stack_top = . + 8192;
+    stack_top = .;
+    stack_bottom = . + 8192;
 }

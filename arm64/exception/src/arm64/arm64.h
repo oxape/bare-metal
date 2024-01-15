@@ -1,0 +1,8 @@
+#ifndef A6AA6927_CACD_4298_9B62_814A57AA3953
+#define A6AA6927_CACD_4298_9B62_814A57AA3953
+
+#include <stdint.h>
+
+extern uint64_t a64_in_monitor();
+
+#endif /* A6AA6927_CACD_4298_9B62_814A57AA3953 */
