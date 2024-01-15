@@ -51,6 +51,7 @@ qemu-system-arm -M virt -cpu cortex-a7
 ```
 
 #### 1. 示例hello
+此示例可以在嵌入式mcu中建立c运行时环境。
 实现汇编代码初始化c语言运行环境的示例
 ".data"段的加载地址指向__etext，将".data"的数据放置在".text"段的后面，同时实现DATA_COPY，在启动时拷贝__etext起始的数据到".data"中，这种".data"的链接地址和加载地址不同的做法通常是在嵌入式MCU中比较常用，由于芯片只能在rom或flash中保存代码，".data"段中的初始值也必须保存在rom或flash中，所以".data"加载地址通常放在".text"段末尾。
 还实现了ZERO_SET用于".bss"段初始化。
@@ -204,6 +205,10 @@ src/start.S:4: Error: immediate value out of range
     LDR r1, =1024
     ADD r0, r0, r1
 ```
+
+## ARM64 REGS Usage
+
+![Alt text](.images/arm64_regs_usage.png)
 
 ## wiki中关于cortex-m
 

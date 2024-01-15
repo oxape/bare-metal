@@ -1,4 +1,4 @@
-    .global Reset_Handler
+.global Reset_Handler
 Reset_Handler:
     ldr r0, =__data_start__
     ldr r1, =__etext

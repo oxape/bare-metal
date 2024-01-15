@@ -48,6 +48,7 @@ PROG=main
 
 # List of all *c sources
 CSRC = \
+ src/uart.c\
  src/test.c
 
 #List of all *S (asm) sources

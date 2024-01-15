@@ -31,9 +31,10 @@ BUILD = build
 # -fno-builtin 		: https://stackoverflow.com/questions/54281780/what-exactly-is-fno-builtin-doing-here
 # -ffreestanding 	: https://stackoverflow.com/questions/17692428/what-is-ffreestanding-option-in-gcc
 # -mcmodel=medany   : https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
-CFLAGS += -g -O0
+CFLAGS += -g -Og
 CFLAGS += -MD -mcmodel=medany -mno-relax
 CFLAGS += -fno-builtin -ffreestanding -nostdlib
+CFLAGS += -fno-omit-frame-pointer # 不要优化栈帧，即是在顶层
 # LDFLAGS += --no-warn-rwx-segment
 
 # Name of target program
