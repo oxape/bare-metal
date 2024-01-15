@@ -51,17 +51,16 @@ PROG=main
 
 # List of all *c sources
 # simple_printf no need fpu or simd
-#  src/simple_print/simple_printf.c
-# src/dump/dump.c\
-# src/arm64/arm64.c\
+# src/simple_print/simple_printf.c
 
 CSRC = \
+ src/dump/dump.c\
+ src/arm64/arm64.c\
  src/print/printf.c\
  src/uart/uart.c\
  src/main.c
 
 #List of all *S (asm) sources
-# src/string.S\
 
 ASRC= \
  src/start.S\
@@ -147,7 +146,7 @@ QEMUOPTS = -M virt -cpu cortex-a57 -m 8G -nographic -smp $(CPUS)
 # enable highmem
 QEMUOPTS += -machine highmem=on
 # enable EL2
-# QEMUOPTS += -machine virtualization=on
+QEMUOPTS += -machine virtualization=on
 # enable EL3
 # QEMUOPTS += -machine secure=on
 

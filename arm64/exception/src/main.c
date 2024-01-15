@@ -35,9 +35,11 @@ void putstring_(const char *s) {
 }
 
 void main() {
+    /*
     pl011_setup(0x9000000, 24000000);
-
     print_el();
+    */
+
     printf("Hello world!\n");
 
     ldr_str();
